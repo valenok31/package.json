@@ -1,0 +1,44 @@
+.blockFriends {
+    position: relative;
+    top: 50px;
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr;
+}
+
+.DivAvatarFriends {
+    padding: 20px 0 20px 0;
+    width: 55px;
+    height: 55px;
+    text-align: center;
+
+}
+
+.item {
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+}
+
+.item a {
+    color: white;
+    text-decoration: none;
+}
+
+.item a.active {
+    color: #0800ff;
+}
+
+.avatarFriends {
+    width: 50px;
+    border-radius: 25px;
+
+
+}
+
+.avatarFriends:hover {
+    border-radius: 5px;
+    width: 55px;
+}

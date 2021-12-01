@@ -1,0 +1,20 @@
+.header {
+    grid-area: h;
+    background-color: aquamarine;
+}
+
+.header img {
+    width: 20px;
+}
+
+.aktiv {
+    color: yellow;
+}
+
+.loginBlock {
+    float: right;
+
+}
+.loginBlock a {
+    color: white;
+}

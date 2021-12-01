@@ -1,0 +1,14 @@
+
+.message {
+    border: 2px blue solid;
+    width: max-content;
+    border-radius: 9px 9px 9px 0px;
+    padding: 5px;
+    margin-top: 20px;
+    /*display: block;*/
+    float: right;
+    position: relative;
+    clear: right;
+    background-color: lightblue;
+
+}
