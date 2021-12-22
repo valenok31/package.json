@@ -1,4 +1,5 @@
 import * as axios from "axios";
+import React from "react";
 
 const instance = axios.create({
     withCredentials: true,
@@ -16,13 +17,31 @@ export const usersAPI = {
                 return response.data
             });
     },
+    follow(userId) {
+        return instance.post(`follow/${userId}`)
+    },
+    unfollow(userId) {
+        return instance.delete(`follow/${userId}`)
+    },
+    getProfile(userId) {
+        if (!userId) {
+            userId = 2;
+        }
+        return instance.get(`profile/` + userId)
+            .then(response => {
+                return response.data
+            });
+    },
+}
 
+export const auchAPI = {
+    getHeader() {
+        return instance.get(`auth/me`)
+            .then(response => {
+
+                return response.data
+            });
+    },
 }
 
 
-export const getUsers = (currentPage = 1, pageSize = 10) => {
-    return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-        .then(response => {
-            return response.data
-        });
-};

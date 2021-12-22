@@ -8,3 +8,7 @@
 font-weight: bold;
 
 }
+
+.curs_div_span span {
+    cursor: pointer;
+}

@@ -5,6 +5,7 @@ const News = (props) => {
     return (
         <div className={s.impex}>
             Hi! Alisa. How are you?
+            {props.frt}
         </div>
     )
 
