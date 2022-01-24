@@ -1,5 +1,4 @@
 const F_ADD_POST = 'F-ADD-POST';
-const F_UPDATE_NEW_POST_TEXT = 'F-UPDATE-NEW-POST-TEXT';
 
 let initialState = {
     messages: [
@@ -9,7 +8,6 @@ let initialState = {
         {id: 4, message: 'Gisha like'},
         {id: 5, message: 'A-tumba-you-you!!!'}
     ],
-    newPostText: '',
     dialogs: [
         {id: 1, name: 'Andrey'},
         {id: 2, name: 'Alisa'},
@@ -28,23 +26,14 @@ const dialogsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 newPostText: '',
-                messages: [...state.messages, {id: 6, message: state.newPostText},]
+                messages: [...state.messages, {id: 6, message: action.dialogTextAreaForm},]
             };
-        }
-        case F_UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText,
-            };
-
         }
         default:
             return state;
     }
 }
-export const f_addPostActionCreator = () => ({type: F_ADD_POST});
+export const f_addPostActionCreator = (dialogTextAreaForm) => ({type: F_ADD_POST,dialogTextAreaForm});
 
-export const f_updateNewPostTextActionCreator = (text) => ({
-    type: F_UPDATE_NEW_POST_TEXT, newText: text
-})
+
 export default dialogsReducer;

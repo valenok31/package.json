@@ -3,6 +3,16 @@ import {connect} from "react-redux";
 import {follow, getUsersRed, setCurrentPage, togglefollowingProgress, unfollow,} from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/users-selectors";
 
 class UsersAPIComponent extends React.Component {
 
@@ -15,7 +25,7 @@ class UsersAPIComponent extends React.Component {
         console.log(test(6)(4)())
 
 
-        const test2 = (d) => () => (f) => () => d+f
+        const test2 = (d) => () => (f) => () => d + f
         console.log(test2(34)()(11)())
 
 
@@ -50,23 +60,29 @@ class UsersAPIComponent extends React.Component {
 let mapStateToProps = (state) => {
 
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state),
     }
 }
 
-export default connect(mapStateToProps,
-    {
-        follow,
-        unfollow,
-        setCurrentPage: setCurrentPage,
-        togglefollowingProgress,
-        getUsersRed,
-    }
-)(UsersAPIComponent);
+
+export default compose(
+    connect(mapStateToProps,
+        {
+            follow,
+            unfollow,
+            setCurrentPage: setCurrentPage,
+            togglefollowingProgress,
+            getUsersRed,
+        }
+    ),
+    withAuthRedirect,
+)(UsersAPIComponent)
+
+
 
 

@@ -3,6 +3,9 @@ import s from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import {Redirect} from "react-router-dom";
+import {Field, reduxForm} from "redux-form";
+import {Textarea} from "../common/FormsControls/FormsControls";
+import {maxLengthCreator, required} from "../../utils/validators/validators";
 
 const Dialogs = (props) => {
 
@@ -13,19 +16,13 @@ const Dialogs = (props) => {
     //let dialogsPeople = props.post.dialogs.map(s => (<DialogItem name={s.name} id={s.id}/>));
     //let newPostElement = React.createRef();
 
-    let addPost = () => {
-        props.f_addPostActionCreator();
+    let addPost = (values) => {
+        props.f_addPostActionCreator(values.dialogTextAreaForm);
         //props.store.dispatch(f_addPostActionCreator());
     }
 
-    let onPostChange = (e) => {
-        //let text = newPostElement.current.value;
-        let text = e.target.value;
-        props.f_updateNewPostTextActionCreator(text);
 
-    }
-
-    if(!props.isAuth) return <Redirect to='/login'/>
+    if (!props.isAuth) return <Redirect to='/login'/>
 
     return (
         <div className={s.dialogs}>
@@ -35,16 +32,29 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 {dialogsElements}
             </div>
-            <div className={s.textarea_button}>
-                <textarea onChange={onPostChange} value={props.newPostText}/>
-                <div>
-                    <button onClick={addPost}>Add post</button>
-                </div>
-            </div>
+            <DialogsReduxForm onSubmit={addPost}/>
         </div>
 
     )
 
 }
+
+const maxLength20 = maxLengthCreator(20);
+
+const DialogsForm = (props) => {
+    return (<form  onSubmit={props.handleSubmit}>
+            <div className={s.textarea_button}>
+                <Field placeholder={"Text only 300 tok"} component={Textarea} name={"dialogTextAreaForm"}
+                       validate={[required, maxLength20]}/>
+                {/*<textarea onChange={onPostChange} value={props.newPostText}/>*/}
+                <div>
+                    <button>Add post</button>
+                </div>
+            </div>
+        </form>
+    )
+}
+
+const DialogsReduxForm = reduxForm({form: 'DialogsTextArea'})(DialogsForm);
 
 export default Dialogs;

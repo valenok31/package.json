@@ -1,23 +1,24 @@
 import React from "react";
 import Music from "./Music";
 import News from "../News/News";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 /*const higherOrderComponent = (PropsF) => {
     return <PropsF/>
 }*/
-/*function withSubscription(Music, size) {
-    return class extends React.Component {
-        render(props) {
-            return <Music frt={size}/>;
-        }
-    }
-}
-const EnhancedComponent = withSubscription(News, " News");*/
-let EnhancedComponent = (Music, size) => {
-  return  () => { <Music frt={size}/>}
 
+
+const MusicCon = () => {
+    return <Music />
 }
 
+//let AuthRedirectComponent = withAuthRedirect(MusicCon);
 
 
-export default EnhancedComponent;
+//export default MusicCon;
+
+export default compose(
+    //withAuthRedirect
+    withAuthRedirect
+)(MusicCon)

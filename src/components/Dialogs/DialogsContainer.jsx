@@ -1,8 +1,9 @@
 import React from 'react';
-import {f_addPostActionCreator, f_updateNewPostTextActionCreator} from "../../redux/dialogs-reducer";
+import {f_addPostActionCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 /*const DialogsContainer = (props) => {
@@ -31,14 +32,6 @@ import {Redirect} from "react-router-dom";
 
 
 
-const mapStateToProps = (state) => {
-    return {
-        dialogs: state.dialogsPage.dialogs,
-        messages: state.dialogsPage.messages,
-        newPostText: state.dialogsPage.newPostText,
-        isAuth: state.auth.isAuth,
-    }
-}
 
 /*const mapDispatchToProps = (dispatch) => {
     return {
@@ -51,12 +44,17 @@ const mapStateToProps = (state) => {
 
     }
 }*/
-let AuthRedirectComponent = (props) => {
-    if(!props.isAuth) return <Redirect to='/login'/>;
-    return <Dialogs {...props}/>
+
+const mapStateToProps = (state) => {
+    return {
+        dialogs: state.dialogsPage.dialogs,
+        messages: state.dialogsPage.messages,
+    }
 }
 
-const DialogsContainer = connect(mapStateToProps,
-    {f_updateNewPostTextActionCreator, f_addPostActionCreator})(AuthRedirectComponent);
+let DialogsContainer = compose(
+    connect(mapStateToProps,{f_addPostActionCreator}),
+    withAuthRedirect,
+)(Dialogs);
 
 export default DialogsContainer;
