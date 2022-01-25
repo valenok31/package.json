@@ -9,7 +9,7 @@ import style from "./../common/FormsControls/FormsControls.module.css"
 
 const maxLength100 = maxLengthCreator(100);
 const maxLength20 = maxLengthCreator(20);
-const minLength5 = minLengthCreator(5);
+const minLength3 = minLengthCreator(3);
 
 const LoginForm = (props) => {
     return (
@@ -17,7 +17,7 @@ const LoginForm = (props) => {
             <div><Field placeholder={"email"} name={"email"} component={Input}
                         validate={[required, maxLength100]}/></div>
             <div><Field placeholder={"password"} name={"password"} component={Input}
-                        validate={[required, maxLength20, minLength5]} type={"password"}/></div>
+                        validate={[required, maxLength20, minLength3]} type={"password"}/></div>
             <div><Field type={"checkbox"} name={"rememberMe"} component={Input}/>remember me</div>
 
             { props.error && <div className={style.formSummaryError}>
