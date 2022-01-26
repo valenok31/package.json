@@ -10,14 +10,14 @@ import {Provider} from "react-redux";
 
 ReactDOM.render(
     <React.StrictMode>
-        <HashRouter>
+        <BrowserRouter>
 
             <Provider store={store}>
                 {/*<App store={store} state={state} dispatch={store.dispatch.bind(store)}/>*/}
                 <App/>
 
             </Provider>
-        </HashRouter>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );

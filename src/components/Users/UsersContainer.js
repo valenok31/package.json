@@ -21,12 +21,12 @@ class UsersAPIComponent extends React.Component {
         /********************************/
 
 
-        const test = (e) => (r) => () => e + r
+/*        const test = (e) => (r) => () => e + r
         console.log(test(6)(4)())
 
 
         const test2 = (d) => () => (f) => () => d + f
-        console.log(test2(34)()(11)())
+        console.log(test2(34)()(11)())*/
 
 
         /*END*****END*****END*/

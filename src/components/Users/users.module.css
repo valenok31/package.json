@@ -1,14 +1,15 @@
-.userPhoto{
+.userPhoto {
     width: 100px;
     height: 100px;
 }
 
-.selectedPage{
-
-font-weight: bold;
-
+.selectedPage {
+    font-weight: bold;
 }
 
-.curs_div_span span {
+.anyPage {
     cursor: pointer;
+}
+
+.curs_div_span {
 }
