@@ -6,10 +6,10 @@ let Paginator = (props) => {
     let curPag = props.currentPage;
 
     pagesFilter = props.pages.filter((n) => {
-        return n < curPag + 6
+        return n < curPag + 16
     })
     pagesFilter = pagesFilter.filter((n) => {
-        return n > curPag - 6
+        return n > curPag - 16
     })
     pagesFilter = pagesFilter.map(p => {
         return <span className={curPag === p ? styles.selectedPage : styles.anyPage}
@@ -26,6 +26,7 @@ let Paginator = (props) => {
         }}>back
         </button>
     </>
+
 
     const lastPage = <>
         <button className={styles.anyPage} onClick={() => {
